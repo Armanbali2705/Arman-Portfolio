@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arman Bali | Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #6366f1;
+      --secondary-color: #8b5cf6;
+      --accent-color: #06b6d4;
+      --bg-dark: #0f172a;
+      --bg-light: #1e293b;
+      --text-light: #f1f5f9;
+      --text-gray: #94a3b8;
+      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      --card-bg: rgba(30, 41, 59, 0.8);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.2) 0%, transparent 50%);
+      z-index: -1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Header Styles */
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+      padding: 2rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      animation: slideDown 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.5));
+      }
+      to {
+        filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.8));
+      }
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: var(--text-gray);
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      animation: fadeInUp 1s ease-out 0.5s both;
+    }
+
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 2px solid transparent;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient);
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+
+    nav a:hover::before {
+      left: 0;
+    }
+
+    nav a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+      border-color: var(--primary-color);
+    }
+
+    /* Section Styles */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    #about {
+      text-align: center;
+    }
+
+    #about p {
+      font-size: 1.2rem;
+      color: var(--text-gray);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Skills Section */
+    #skills {
+      background: rgba(30, 41, 59, 0.3);
+      border-radius: 20px;
+      margin: 2rem auto;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    #skills ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 0;
+    }
+
+    #skills li {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 15px;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #skills li::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    #skills li:hover::before {
+      transform: scaleX(1);
+    }
+
+    #skills li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+      border-color: var(--primary-color);
+    }
+
+    /* Projects Section */
+    .project {
+      background: var(--card-bg);
+      margin: 2rem 0;
+      padding: 2.5rem;
+      border-radius: 20px;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .project:hover::before {
+      left: 100%;
+    }
+
+    .project:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(99, 102, 241, 0.4);
+      border-color: var(--accent-color);
+    }
+
+    .project h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+    .project p {
+      color: var(--text-gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .project a {
+      display: inline-block;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      background: var(--gradient);
+      border-radius: 50px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project a:hover::before {
+      opacity: 1;
+    }
+
+    .project a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(6, 182, 212, 0.4);
+    }
+
+    .project a span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Contact Section */
+    #contact {
+      text-align: center;
+      background: rgba(30, 41, 59, 0.3);
+      border-radius: 20px;
+      margin: 2rem auto;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    #contact p {
+      margin: 1.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    #contact a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    #contact a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    #contact a:hover::after {
+      width: 100%;
+    }
+
+    #contact a:hover {
+      color: var(--text-light);
+      transform: translateY(-2px);
+    }
+
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Intersection Observer Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      section {
+        padding: 3rem 1rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      #skills ul {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gradient);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-color);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Arman Bali</h1>
+    <p>Computer Science Undergraduate | Backend Developer | DSA Enthusiast</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="fade-in">
+    <h2>About Me</h2>
+    <p>
+      I am a Computer Science undergraduate passionate about building scalable applications, 
+      solving real-world problems, and sharpening my problem-solving skills through DSA.
+      With a focus on backend development and modern technologies, I strive to create 
+      efficient and innovative solutions.
+    </p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="fade-in">
+    <h2>Technical Skills</h2>
+    <ul>
+      <li><strong>Languages:</strong> Java, C++, Python, SQL</li>
+      <li><strong>Frontend:</strong> HTML, CSS, JavaScript</li>
+      <li><strong>Backend:</strong> Node.js, Spring Boot, REST APIs, MySQL</li>
+      <li><strong>Tools:</strong> Git, GitHub, Postman, VS Code</li>
+    </ul>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="fade-in">
+    <h2>Featured Projects</h2>
+    
+    <div class="project">
+      <h3>🎮 Flappy Bird (JavaFX)</h3>
+      <p>2D arcade game with real-time physics, collision detection, and high score storage. Features smooth animations and responsive controls for an engaging gaming experience.</p>
+      <a href="https://github.com/Armanbali2705" target="_blank">
+        <span>View on GitHub</span>
+      </a>
+    </div>
+
+    <div class="project">
+      <h3>🎓 Student Portal (Java + JDBC + MySQL)</h3>
+      <p>Comprehensive student management system with secure authentication, course enrollment functionality, and clean MVC architecture. Built with scalability and performance in mind.</p>
+      <a href="https://github.com/Armanbali2705" target="_blank">
+        <span>View on GitHub</span>
+      </a>
+    </div>
+
+    <div class="project">
+      <h3>📝 Personal Blog (HTML, CSS, JS)</h3>
+      <p>Modern, responsive blog website featuring structured content layout, intuitive navigation, and interactive contact forms. Optimized for all devices and screen sizes.</p>
+      <a href="https://github.com/Armanbali2705" target="_blank">
+        <span>View on GitHub</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="fade-in">
+    <h2>Let's Connect</h2>
+    <p>📧 Email: <a href="mailto:armanbali777@gmail.com">armanbali777@gmail.com</a></p>
+    <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/arman-bali-353b34278" target="_blank">linkedin.com/in/arman-bali</a></p>
+    <p>💻 GitHub: <a href="https://github.com/Armanbali2705" target="_blank">github.com/Armanbali2705</a></p>
+  </section>
+
+  <script>
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add loading animation
+    window.addEventListener('load', () => {
+      document.body.style.opacity = '1';
+    });
+  </script>
+</body>
+</html>
